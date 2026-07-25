@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bva4uw7v70f8e"]
 
-[ext_resource type="PackedScene" uid="uid://coodly1g6rvok" path="res://scenes/player.tscn" id="1_s3esy"]
+[ext_resource type="PackedScene" uid="uid://coodly1g6rvok" path="res://scenes/player/player.tscn" id="1_s3esy"]
 [ext_resource type="Texture2D" uid="uid://dlqmned1lon18" path="res://icon.svg" id="2_72e8q"]
 [ext_resource type="PackedScene" uid="uid://bjxptutjkl18h" path="res://scenes/enemies/slime.tscn" id="3_d2op2"]
 
@@ -16,9 +16,7 @@ texture = ExtResource("2_72e8q")
 stretch_mode = 1
 
 [node name="Player" parent="." unique_id=1889006784 instance=ExtResource("1_s3esy")]
-position = Vector2(544, 557)
-motion_mode = 1
+position = Vector2(542, 559)
 
 [node name="Slime" parent="." unique_id=688680531 instance=ExtResource("3_d2op2")]
 position = Vector2(912, 434)
-motion_mode = 1
