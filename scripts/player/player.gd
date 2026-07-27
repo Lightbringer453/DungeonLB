@@ -4,10 +4,8 @@ extends CharacterBody2D
 
 @onready var health_component = $HealthComponent
 
-
 func _ready() -> void:
 	health_component.died.connect(_on_died)
-
 
 func _physics_process(_delta: float) -> void:
 	var direction = Input.get_vector(
@@ -19,7 +17,6 @@ func _physics_process(_delta: float) -> void:
 
 	velocity = direction * speed
 	move_and_slide()
-
 
 func _on_died() -> void:
 	print("Player died")

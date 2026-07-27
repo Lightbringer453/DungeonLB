@@ -36,6 +36,7 @@ shape = SubResource("CircleShape2D_dvog6")
 [node name="HealthComponent" type="Node" parent="." unique_id=1737332100]
 script = ExtResource("3_gmlin")
 
-[node name="WeaponPivot" type="Node" parent="." unique_id=1897280632]
+[node name="WeaponPivot" type="Node2D" parent="." unique_id=1027580278]
+position = Vector2(60, 0)
 
 [node name="Sword" parent="WeaponPivot" unique_id=2117431512 instance=ExtResource("5_p47bc")]

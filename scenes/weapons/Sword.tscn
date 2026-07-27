@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cdqtcpky7gl40"]
 
 [ext_resource type="Script" uid="uid://ddthhsggnjsuj" path="res://scripts/weapons/sword.gd" id="1_m7h3f"]
+[ext_resource type="Texture2D" uid="uid://dh4hdr7b4e4qp" path="res://assets/sprites/weapons/32x32-pixel-art-fantasy-sword-icon-6f15.png" id="2_feku7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dvog6"]
 radius = 12.0
@@ -8,11 +9,17 @@ radius = 12.0
 [node name="Sword" type="Node2D" unique_id=2117431512]
 script = ExtResource("1_m7h3f")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=674631014]
+[node name="Pivot" type="Node2D" parent="." unique_id=965061523]
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=1645194058]
+[node name="Sprite2D" type="Sprite2D" parent="Pivot" unique_id=744100926]
+position = Vector2(21, -19)
+texture = ExtResource("2_feku7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1890571943]
+[node name="Hitbox" type="Area2D" parent="Pivot" unique_id=1645194058]
+position = Vector2(34, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Hitbox" unique_id=1890571943]
+position = Vector2(7, -27)
 shape = SubResource("CircleShape2D_dvog6")
 
 [node name="Timer" type="Timer" parent="." unique_id=336465079]

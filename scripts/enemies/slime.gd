@@ -9,6 +9,7 @@ var player: CharacterBody2D
 var can_attack: bool = true
 
 @onready var hitbox: Area2D = $Hitbox
+@onready var health_component = $HealthComponent
 
 
 func _ready() -> void:
@@ -19,6 +20,7 @@ func _ready() -> void:
 		return
 
 	hitbox.area_entered.connect(_on_hitbox_area_entered)
+	health_component.died.connect(_on_died)
 
 
 func _physics_process(_delta: float) -> void:
@@ -26,15 +28,10 @@ func _physics_process(_delta: float) -> void:
 		velocity = Vector2.ZERO
 		return
 
-	var distance_to_player: float = global_position.distance_to(
-		player.global_position
-	)
+	var distance_to_player := global_position.distance_to(player.global_position)
 
 	if distance_to_player > stopping_distance:
-		var direction: Vector2 = global_position.direction_to(
-			player.global_position
-		)
-
+		var direction := global_position.direction_to(player.global_position)
 		velocity = direction * move_speed
 	else:
 		velocity = Vector2.ZERO
@@ -60,3 +57,7 @@ func attack(hurtbox: Area2D) -> void:
 	await get_tree().create_timer(attack_cooldown).timeout
 
 	can_attack = true
+
+
+func _on_died() -> void:
+	queue_free()
