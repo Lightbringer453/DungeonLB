@@ -2,11 +2,16 @@
 
 [ext_resource type="Script" uid="uid://ccvn5u67soet2" path="res://scripts/enemies/slime.gd" id="1_ahq63"]
 [ext_resource type="Texture2D" uid="uid://dlqmned1lon18" path="res://icon.svg" id="1_rldp6"]
+[ext_resource type="Script" uid="uid://cpwf2i0vo70km" path="res://scripts/components/hurtbox_component.gd" id="3_4h4y0"]
+[ext_resource type="Script" uid="uid://bt5tdua0rmte7" path="res://scripts/components/health_component.gd" id="4_b58ev"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dvog6"]
 radius = 25.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a2bue"]
+radius = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h70q2"]
 radius = 26.0
 
 [node name="Slime" type="CharacterBody2D" unique_id=688680531]
@@ -26,3 +31,13 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1186910385]
 shape = SubResource("CircleShape2D_a2bue")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1610029280]
+script = ExtResource("3_4h4y0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=720123596]
+shape = SubResource("CircleShape2D_h70q2")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1755617451]
+script = ExtResource("4_b58ev")
+max_health = 30

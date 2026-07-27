@@ -53,15 +53,7 @@ func attack(hurtbox: Area2D) -> void:
 	if not can_attack:
 		return
 
-	var target := hurtbox.get_parent()
-	var health_component := target.get_node_or_null("HealthComponent")
-
-	if health_component == null:
-		push_warning("Hedefte HealthComponent bulunamadı.")
-		return
-
-	health_component.take_damage(damage)
-	print("Player health: ", health_component.current_health)
+	hurtbox.damage(damage)
 
 	can_attack = false
 

@@ -16,7 +16,7 @@ texture = ExtResource("2_72e8q")
 stretch_mode = 1
 
 [node name="Player" parent="." unique_id=1889006784 instance=ExtResource("1_s3esy")]
-position = Vector2(542, 559)
+position = Vector2(553, 558)
 
 [node name="Slime" parent="." unique_id=688680531 instance=ExtResource("3_d2op2")]
 position = Vector2(912, 434)
