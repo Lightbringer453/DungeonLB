@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ccvn5u67soet2" path="res://scripts/enemies/slime.gd" id="1_ahq63"]
 [ext_resource type="Texture2D" uid="uid://dlqmned1lon18" path="res://icon.svg" id="1_rldp6"]
+[ext_resource type="PackedScene" uid="uid://djb2orvjs6dtn" path="res://scenes/pickups/XPGem.tscn" id="2_ankfk"]
 [ext_resource type="Script" uid="uid://cpwf2i0vo70km" path="res://scripts/components/hurtbox_component.gd" id="3_4h4y0"]
 [ext_resource type="Script" uid="uid://bt5tdua0rmte7" path="res://scripts/components/health_component.gd" id="4_b58ev"]
 
@@ -14,9 +15,9 @@ radius = 26.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_h70q2"]
 radius = 26.0
 
-[node name="Slime" type="CharacterBody2D" unique_id=688680531 groups=["enemies"]]
-motion_mode = 1
+[node name="Slime" type="Area2D" unique_id=11711418 groups=["enemies"]]
 script = ExtResource("1_ahq63")
+xp_gem_scene = ExtResource("2_ankfk")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1997872795]
 scale = Vector2(0.4, 0.4)

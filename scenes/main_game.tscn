@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://coodly1g6rvok" path="res://scenes/player/player.tscn" id="1_s3esy"]
 [ext_resource type="Texture2D" uid="uid://dlqmned1lon18" path="res://icon.svg" id="2_72e8q"]
 [ext_resource type="PackedScene" uid="uid://3q0dqfmt4nk2" path="res://scenes/managers/EnemySpawner.tscn" id="4_0rdsr"]
+[ext_resource type="Script" uid="uid://dtp8oiyerf20" path="res://scripts/ui/xp_ui.gd" id="4_ipu61"]
 
 [node name="MainGame" type="Node2D" unique_id=39240938]
 
@@ -23,5 +24,34 @@ position = Vector2(553, 558)
 [node name="PickupContainer" type="Node2D" parent="." unique_id=1472829245]
 
 [node name="EnemySpawner" parent="." unique_id=1799671900 instance=ExtResource("4_0rdsr")]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1554806047]
+script = ExtResource("4_ipu61")
+
+[node name="Control" type="Control" parent="UI" unique_id=13828906]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelLabel" type="Label" parent="UI/Control" unique_id=1670936755]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Level 1"
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/Control" unique_id=1977053631]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+max_value = 10.0
+
+[node name="XPLabel" type="Label" parent="UI/Control" unique_id=465532131]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "0 / 10 XP"
 
 [editable path="Player"]

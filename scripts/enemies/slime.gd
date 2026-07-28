@@ -1,58 +1,50 @@
-extends CharacterBody2D
+extends Area2D
 
+@export var xp_gem_scene: PackedScene
 @export var move_speed: float = 120.0
 @export var stopping_distance: float = 45.0
 @export var damage: int = 10
 @export var attack_cooldown: float = 1.0
 
-var player: CharacterBody2D
-var can_attack: bool = true
-
-@onready var hitbox: Area2D = $Hitbox
 @onready var health_component = $HealthComponent
+@onready var hitbox = $Hitbox
+
+var player: CharacterBody2D
+var can_attack := true
 
 
 func _ready() -> void:
-	player = get_tree().current_scene.get_node("Player") as CharacterBody2D
+	player = get_tree().current_scene.get_node("Player")
 
-	if player == null:
-		push_warning("Player bulunamadı.")
-		return
-
-	hitbox.area_entered.connect(_on_hitbox_area_entered)
 	health_component.died.connect(_on_died)
 
+	hitbox.body_entered.connect(_on_hitbox_body_entered)
 
-func _physics_process(_delta: float) -> void:
+
+func _process(delta: float) -> void:
 	if player == null:
-		velocity = Vector2.ZERO
 		return
 
-	var distance_to_player := global_position.distance_to(player.global_position)
+	var direction = player.global_position - global_position
+	var distance = direction.length()
 
-	if distance_to_player > stopping_distance:
-		var direction := global_position.direction_to(player.global_position)
-		velocity = direction * move_speed
-	else:
-		velocity = Vector2.ZERO
-
-	move_and_slide()
+	if distance > stopping_distance:
+		global_position += direction.normalized() * move_speed * delta
 
 
-func _on_hitbox_area_entered(area: Area2D) -> void:
-	if area.name != "Hurtbox":
+func _on_hitbox_body_entered(body: Node) -> void:
+	if body != player:
 		return
 
-	attack(area)
-
-
-func attack(hurtbox: Area2D) -> void:
-	if not can_attack:
+	if !can_attack:
 		return
-
-	hurtbox.damage(damage)
 
 	can_attack = false
+
+	var hurtbox = body.get_node("Hurtbox")
+
+	if hurtbox:
+		hurtbox.damage(damage)
 
 	await get_tree().create_timer(attack_cooldown).timeout
 
@@ -60,4 +52,9 @@ func attack(hurtbox: Area2D) -> void:
 
 
 func _on_died() -> void:
+	if xp_gem_scene:
+		var gem = xp_gem_scene.instantiate()
+		gem.global_position = global_position
+		get_tree().current_scene.get_node("PickupContainer").add_child(gem)
+
 	queue_free()

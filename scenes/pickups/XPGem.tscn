@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://djb2orvjs6dtn"]
+
+[ext_resource type="Script" uid="uid://ds7a77o3vtgem" path="res://scripts/pickups/xp_gem.gd" id="1_ps5si"]
+[ext_resource type="Texture2D" uid="uid://utx70es2cr5a" path="res://assets/sprites/xp/Crystal.png" id="2_7770t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dvog6"]
+radius = 12.0
+
+[node name="XpGem" type="Area2D" unique_id=176727051]
+visibility_layer = 16
+script = ExtResource("1_ps5si")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=918174446]
+texture = ExtResource("2_7770t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=966937263]
+shape = SubResource("CircleShape2D_dvog6")
